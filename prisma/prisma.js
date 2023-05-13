@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === "production") {
     global.prisma = new PrismaClient();
   }
 
-  prisma = golbal.prisma;
+  prisma = global.prisma;
 }
 
 export default prisma;
