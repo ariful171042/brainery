@@ -1,12 +1,7 @@
-const HomePage = () => {
-  return (
-    <div>
-      <h1 className="text-6xl">Home pages</h1>
-      <a href="#" className="font-medium">
-        hello
-      </a>
-    </div>
-  );
+import React from "react";
+
+const HomePages = () => {
+  return <div>HomePages</div>;
 };
 
-export default HomePage;
+export default HomePages;
