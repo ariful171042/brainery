@@ -12,7 +12,7 @@ const CoursesPage = ({ courses }) => {
       />
 
       <div className=" mt-10 flex flex-wrap gap-10">
-        {courses?.map((course) => (
+        {courses.map((course) => (
           <CourseItem key={course.id} course={course} />
         ))}
       </div>
