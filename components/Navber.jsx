@@ -26,7 +26,7 @@ const Navber = () => {
 
         <div className="">
           <Button
-            href="/login"
+            href="/users/login"
             placeholder="Sign in"
             color="secoundary"
             size="default"

@@ -45,7 +45,7 @@ const CourseItem = ({ course }) => {
           <p className="text-2xl font-semibold">
             {currencyConverter(course.price)}
           </p>
-          <Button href={`course/${course.id}`} placeholder="View Detals" />
+          <Button href={`courses/${course.id}`} placeholder="View Detals" />
         </div>
       </div>
     </div>
