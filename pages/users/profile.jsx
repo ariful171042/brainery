@@ -51,7 +51,7 @@ export const getServerSideProps = async (context) => {
     return {
       redirect: {
         destination: "/users/login",
-        permanent: flase,
+        permanent: false,
       },
     };
   }
