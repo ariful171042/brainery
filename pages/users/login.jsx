@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const LoginPage = ({ session }) => {
-  console.log(session);
   const router = useRouter();
 
   const loginWithGoogle = async () => {
