@@ -2,6 +2,11 @@ import SectionHeader from "@/components/SectionHeader";
 import { getCourse } from "@/prisma/courses";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+
+/* Stripe promise */
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const checkoutPage = ({ course }) => {
   const { data: session } = useSession();
@@ -25,10 +30,31 @@ const checkoutPage = ({ course }) => {
     }
   }, [session]);
 
+  // checkout handler
   const handleCheckout = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    const stripe = await stripePromise;
+
+    /* Send a post req to the server */
+    const checkoutsession = await axios.post("/api/create-checkout-session", {
+      items: [course],
+      name: formData.name,
+      email: formData.email,
+      mobile: formData.mobile,
+      address: formData.address,
+      courseTitle: formData.courseTitle,
+    });
+
+    /* redirect to the stripe payment */
+
+    const result = stripe.redirectToCheckout({
+      sessionId: checkoutsession.data.id,
+    });
+
+    if (result.error) {
+      console.log((await result).error.message);
+    }
   };
 
   return (
@@ -82,6 +108,7 @@ const checkoutPage = ({ course }) => {
               id="mobile"
               placeholder="+88017********"
               value={formData.mobile}
+              required
               onChange={(e) =>
                 setFormData({ ...formData, mobile: e.target.value })
               }
@@ -97,6 +124,7 @@ const checkoutPage = ({ course }) => {
               type="mobile"
               placeholder="XYZ street, LY"
               value={formData.address}
+              required
               onChange={(e) =>
                 setFormData({ ...formData, address: e.target.value })
               }
