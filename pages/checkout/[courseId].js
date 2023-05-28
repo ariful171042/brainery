@@ -8,7 +8,7 @@ import axios from "axios";
 /* Stripe promise */
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-const checkoutPage = ({ course }) => {
+const CheckoutPage = ({ course }) => {
   const { data: session } = useSession();
 
   const [formData, setFormData] = useState({
@@ -169,7 +169,7 @@ const checkoutPage = ({ course }) => {
   );
 };
 
-export default checkoutPage;
+export default CheckoutPage;
 
 export const getServerSideProps = async ({ query }) => {
   const course = await getCourse(query.courseId);
