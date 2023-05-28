@@ -1,10 +1,11 @@
 import Button from "@/components/Button";
+import prisma from "@/prisma/prisma";
 import { currencyConverter } from "@/utils/currencyConverter";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const OrderPage = ({ session, customer }) => {
+const OrdersPage = ({ session, customer }) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -13,30 +14,31 @@ const OrderPage = ({ session, customer }) => {
     }
   }, [session, router]);
 
-  if (!session) {
+  if (!session && !customer) {
     return null;
   }
+
   return (
     <div className="wrapper py-10 min-h-screen">
-      <h2 className="text-3xl text-center mb-5">
-        Your enrolled: {customer.orders.length} course
+      <h2 className="text-3xl mb-5">
+        You enrolled: {customer.orders.length} course
         {customer.orders.length > 1 ? "s" : ""}
       </h2>
 
-      <div className="courses flex flex-wrap gap-10 ">
+      <div className="courses flex flex-wrap gap-10">
         {customer.orders.map((course) => (
           <div
-            className="course p-5 shadow-md rounded-lg space-y-3"
             key={course.id}
+            className="course p-5 shadow-md rounded-lg space-y-3"
           >
             <h2 className="text-2xl">{course.courseTitle}</h2>
             <p className="text-lg">
               Amount: {currencyConverter(course.amountTotal)}
             </p>
             <Button
-              href={`/users/dashbord/courses/${course.courseId}`}
+              href={`/users/dashboard/courses/${course.courseId}`}
               placeholder={"Study Now"}
-            />
+            ></Button>
           </div>
         ))}
       </div>
@@ -44,10 +46,10 @@ const OrderPage = ({ session, customer }) => {
   );
 };
 
-export default OrderPage;
+export default OrdersPage;
+
 export const getServerSideProps = async (context) => {
   const session = await getSession(context);
-
   const customer = await prisma.user.findUnique({
     where: {
       email: session?.user?.email,
@@ -61,28 +63,27 @@ export const getServerSideProps = async (context) => {
     return {
       redirect: {
         destination: "/users/login",
-        permanest: true,
+        permanent: true,
       },
     };
   }
 
-  const updateCustomer = {
+  const updatedCustomer = {
     ...customer,
+    updatedAt: customer.updatedAt.toString(),
+    createdAt: customer.createdAt.toString(),
 
-    updatedAt: customer?.updatedAt.toString(),
-    createdAt: customer?.createdAt.toString(),
-
-    orders: customer?.orders?.map((order) => ({
+    orders: customer.orders.map((order) => ({
       ...order,
-      updatedAt: order?.updatedAt?.toString(),
-      createdAt: order?.createdAt?.toString(),
+      updatedAt: order.updatedAt.toString(),
+      createdAt: order.createdAt.toString(),
     })),
   };
 
   return {
     props: {
       session,
-      customer: updateCustomer,
+      customer: updatedCustomer,
     },
   };
 };
