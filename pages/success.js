@@ -23,7 +23,7 @@ const SuccessPage = ({ session }) => {
           {" "}
           <span className="text-emerald-500">
             <AiOutlineCheckCircle />
-          </span>{" "}
+          </span>
           You've entrolled successfull!
         </h2>
 

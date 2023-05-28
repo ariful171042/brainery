@@ -7,15 +7,12 @@ import { useEffect } from "react";
 const OrderPage = ({ session, customer }) => {
   const router = useRouter();
 
-  useEffect(
-    () => {
-      if (!session) {
-        router.replace("/users/login");
-      }
-    },
-    router,
-    session
-  );
+  useEffect(() => {
+    if (!session) {
+      router.replace("/users/login");
+    }
+  }, [session, router]);
+
   if (!session) {
     return null;
   }
