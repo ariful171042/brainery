@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
-/* Stripe promise */
+/* STRIPE PROMISE */
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-const CheckoutPage = ({ course }) => {
+const Checkout = ({ course }) => {
   const { data: session } = useSession();
 
   const [formData, setFormData] = useState({
@@ -30,14 +30,14 @@ const CheckoutPage = ({ course }) => {
     }
   }, [session]);
 
-  // checkout handler
+  /* CHECKOUT HANDLER */
   const handleCheckout = async (e) => {
     e.preventDefault();
 
     const stripe = await stripePromise;
 
-    /* Send a post req to the server */
-    const checkoutsession = await axios.post("/api/create-checkout-session", {
+    /* SEND A POST REQ. TO THE SERVER */
+    const checkoutSession = await axios.post("/api/create-checkout-session", {
       items: [course],
       name: formData.name,
       email: formData.email,
@@ -47,14 +47,13 @@ const CheckoutPage = ({ course }) => {
       courseId: course.id,
     });
 
-    /* redirect to the stripe payment */
-
-    const result = stripe.redirectToCheckout({
-      sessionId: checkoutsession.data.id,
+    /* REDIRECT TO THE STRIPE PAYMENT */
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
     });
 
     if (result.error) {
-      console.log((await result).error.message);
+      console.log(result.error.message);
     }
   };
 
@@ -62,8 +61,8 @@ const CheckoutPage = ({ course }) => {
     <div className="wrapper py-10 min-h-screen">
       <SectionHeader
         span={"Checkout"}
-        h2={"Please provide detals"}
-        p={"Fill out this form to continue checkout "}
+        h2={"Please provide your details"}
+        p={"Fill out this form to continue checkout"}
       />
 
       <div className="flex justify-center">
@@ -76,12 +75,12 @@ const CheckoutPage = ({ course }) => {
               Name
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-black"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
               type="text"
               id="name"
-              placeholder={formData.name}
-              readOnly
+              placeholder="Sarah"
               value={formData.name}
+              readOnly
             />
           </div>
 
@@ -90,12 +89,12 @@ const CheckoutPage = ({ course }) => {
               Email
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-black"
-              id="email"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
               type="email"
-              placeholder={formData.email}
-              readOnly
+              id="email"
+              placeholder="hello@example.com"
               value={formData.email}
+              readOnly
             />
           </div>
 
@@ -104,62 +103,67 @@ const CheckoutPage = ({ course }) => {
               Phone number
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-black"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
               type="tel"
               id="mobile"
-              placeholder="+88017********"
+              placeholder="+88017xxxxxxx"
               value={formData.mobile}
-              required
               onChange={(e) =>
                 setFormData({ ...formData, mobile: e.target.value })
               }
+              required
             />
           </div>
 
           <div className="form-control flex flex-col gap-2">
-            <label htmlFor="text" className="cursor-pointer">
+            <label htmlFor="address" className="cursor-pointer">
               Address
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-black"
-              type="mobile"
-              placeholder="XYZ street, LY"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
+              type="text"
+              id="address"
+              placeholder="ABC Street, NY"
               value={formData.address}
-              required
               onChange={(e) =>
                 setFormData({ ...formData, address: e.target.value })
               }
+              required
             />
           </div>
 
           <div className="form-control flex flex-col gap-2">
-            <label htmlFor="text" className="cursor-pointer">
-              Course Title
+            <label htmlFor="courseTitle" className="cursor-pointer">
+              Course title
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-black"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
               type="text"
-              placeholder={formData.courseTitle}
-              readOnly
+              id="courseTitle"
+              placeholder="Advanced JavaScript Course 2023"
               value={formData.courseTitle}
+              readOnly
             />
           </div>
+
           <div className="form-control flex flex-col gap-2">
-            <label htmlFor="number" className="cursor-pointer">
+            <label htmlFor="price" className="cursor-pointer">
               Price (USD)
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-black"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
               type="number"
-              placeholder={formData.price}
-              readOnly
+              id="price"
+              placeholder="$100"
               value={formData.price}
+              readOnly
             />
           </div>
+
           <button
-            type="submit"
             role="link"
-            className="bg-black text-white py-4 rounded-lg hover:bg-gray-700 uppercase"
+            type="submit"
+            className="bg-black py-4 rounded-lg text-white hover:bg-gray-700 duration-300 uppercase"
           >
             Proceed to checkout
           </button>
@@ -169,7 +173,7 @@ const CheckoutPage = ({ course }) => {
   );
 };
 
-export default CheckoutPage;
+export default Checkout;
 
 export const getServerSideProps = async ({ query }) => {
   const course = await getCourse(query.courseId);
@@ -179,6 +183,7 @@ export const getServerSideProps = async ({ query }) => {
     updatedAt: course.updatedAt.toString(),
     createdAt: course.createdAt.toString(),
   };
+
   return {
     props: {
       course: updatedCourse,

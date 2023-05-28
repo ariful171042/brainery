@@ -34,7 +34,7 @@ const OrderPage = ({ session, customer }) => {
               Amount: {currencyConverter(course.amountTotal)}
             </p>
             <Button
-              href={`/user/dashbord/courses/${course.courseId}`}
+              href={`/users/dashbord/courses/${course.courseId}`}
               placeholder={"Study Now"}
             />
           </div>
