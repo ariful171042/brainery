@@ -44,6 +44,7 @@ const checkoutPage = ({ course }) => {
       mobile: formData.mobile,
       address: formData.address,
       courseTitle: formData.courseTitle,
+      courseId: course.id,
     });
 
     /* redirect to the stripe payment */
