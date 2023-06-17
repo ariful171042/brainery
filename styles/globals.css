@@ -7,3 +7,18 @@
 .wrapper {
   @apply container mx-auto px-5 lg:px-0;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ffff !important;
+  fill: #ffff !important;
+  stroke: #ffff !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: #ffff !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffff !important;
+}
