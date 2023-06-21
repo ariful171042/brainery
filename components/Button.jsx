@@ -8,8 +8,8 @@ const buttonVariants = cva(
   {
     variants: {
       color: {
-        primary: "bg-black text-white hover:bg-gray-700",
-        secoundary: "bg-white text-black hover:bg-gray-300 ",
+        primary: "bg-sky-500 text-white hover:bg-sky-600",
+        secoundary: "bg-white text-sky-500 hover:bg-gray-300 ",
       },
       size: {
         default: "py-3 px-6",

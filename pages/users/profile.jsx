@@ -26,12 +26,12 @@ const ProfilePage = ({ session }) => {
         alt={session.user.name}
         width={50}
         height={50}
-        className="h-20 w-20 rounded-full border-2 border-black"
+        className="h-20 w-20 rounded-full border-2 border-sky-400"
       />
       <h2 className="text-3xl mt-2">Welcome, {session.user.name}</h2>
       <button
         onClick={logoutWithGoogle}
-        className="flex gap-2 items-center bg-black text-white py-3 px-6 rounded-lg mt-5 hover:bg-gray-700 duration-300"
+        className="flex gap-2 items-center bg-sky-400 text-white py-3 px-6 rounded-lg mt-5 hover:bg-sky-600 duration-300"
       >
         <span>
           <FiLogOut />

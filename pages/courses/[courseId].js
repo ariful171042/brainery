@@ -23,7 +23,7 @@ const CourseDetals = ({ course }) => {
 
       <div className="mt-10 grid lg:grid-cols-2 lg:gap-10 space-y-2 lg:space-y-0 ">
         <div className="left space-y-2">
-          <h2 data-aos="fade-up" className="text-4xl">
+          <h2 data-aos="fade-up" className="text-4xl text-sky-400">
             {course.title}
           </h2>
           <p data-aos="fade-up">
@@ -47,13 +47,13 @@ const CourseDetals = ({ course }) => {
           <p data-aos="fade-up">
             <span className="font-semibold">Rating:</span> {course.rating}
           </p>
-          <p data-aos="fade-up" className="text-3xl font-semibold">
+          <p data-aos="fade-up" className="text-3xl text-sky-400 font-semibold">
             Price: {currencyConverter(course.price)}
           </p>
           <button
             data-aos="fade-up"
             onClick={handleEnroll}
-            className="bg-black text-white py-3 rounded-lg w-full hover:bg-gray-700 duration-300"
+            className="bg-sky-400 text-white py-3 rounded-lg w-full hover:bg-sky-500 duration-300"
           >
             Enroll Now
           </button>

@@ -19,7 +19,7 @@ const OrdersPage = ({ session, customer }) => {
   }
 
   return (
-    <div className="wrapper py-10 min-h-screen">
+    <div className="wrapper mx-auto py-10 min-h-screen">
       <h2 className="text-3xl mb-5">
         You enrolled: {customer.orders.length} course
         {customer.orders.length > 1 ? "s" : ""}

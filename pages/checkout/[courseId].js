@@ -75,7 +75,7 @@ const Checkout = ({ course }) => {
               Name
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-sky-500"
               type="text"
               id="name"
               placeholder="Sarah"
@@ -89,7 +89,7 @@ const Checkout = ({ course }) => {
               Email
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-sky-500"
               type="email"
               id="email"
               placeholder="hello@example.com"
@@ -103,7 +103,7 @@ const Checkout = ({ course }) => {
               Phone number
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-sky-500"
               type="tel"
               id="mobile"
               placeholder="+88017xxxxxxx"
@@ -120,7 +120,7 @@ const Checkout = ({ course }) => {
               Address
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-sky-500"
               type="text"
               id="address"
               placeholder="ABC Street, NY"
@@ -137,7 +137,7 @@ const Checkout = ({ course }) => {
               Course title
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-sky-500"
               type="text"
               id="courseTitle"
               placeholder="Advanced JavaScript Course 2023"
@@ -151,7 +151,7 @@ const Checkout = ({ course }) => {
               Price (USD)
             </label>
             <input
-              className="outline-none border py-3 px-4 rounded-lg focus:border-gray-700"
+              className="outline-none border py-3 px-4 rounded-lg focus:border-sky-500"
               type="number"
               id="price"
               placeholder="$100"
@@ -163,7 +163,7 @@ const Checkout = ({ course }) => {
           <button
             role="link"
             type="submit"
-            className="bg-black py-4 rounded-lg text-white hover:bg-gray-700 duration-300 uppercase"
+            className="bg-sky-500 py-4 rounded-lg text-white hover:bg-sky-600 duration-300 uppercase"
           >
             Proceed to checkout
           </button>

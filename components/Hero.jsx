@@ -51,7 +51,10 @@ const HeroSection = () => {
                   {item.paragraph}
                 </p>
                 <div data-swiper-parallax="-500%">
-                  <Link href="/products" className="btn btn-accent">
+                  <Link
+                    href="/products"
+                    className="btn bg-sky-500 text-white hover:bg-sky-600 border-none"
+                  >
                     {item.cta}
                   </Link>
                 </div>

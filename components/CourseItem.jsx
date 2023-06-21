@@ -9,8 +9,8 @@ const CourseItem = ({ course }) => {
   return (
     <motion.div
       variants={shutterUp()}
-      initial="from"
-      whileInView="to"
+      // initial="from"
+      // whileInView="to"
       transition={getTransition(0, 1)}
       className="w-full lg:w-[30rem] shadow-md rounded-md  overflow-hidden"
     >
@@ -25,7 +25,9 @@ const CourseItem = ({ course }) => {
         />
       </div>
       <div className="p-5 space-y-2">
-        <h3 className="text-3xl font-medium  h-20">{course.title}</h3>
+        <h3 className="text-3xl text-sky-400 font-medium  h-20">
+          {course.title}
+        </h3>
         <p className="flex justify-between text-gray-500">
           <span>
             by{" "}
@@ -50,7 +52,7 @@ const CourseItem = ({ course }) => {
           {course.description.substring(0, 100)}...
         </p>
         <div className="flex justify-between items-center">
-          <p className="text-2xl font-semibold">
+          <p className="text-2xl text-sky-400 font-semibold">
             {currencyConverter(course.price)}
           </p>
           <Button href={`courses/${course.id}`} placeholder="View Detals" />
