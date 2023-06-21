@@ -9,8 +9,8 @@ const CourseItem = ({ course }) => {
   return (
     <motion.div
       variants={shutterUp()}
-      // initial="from"
-      // whileInView="to"
+      initial="from"
+      whileInView="to"
       transition={getTransition(0, 1)}
       className="w-full lg:w-[30rem] shadow-md rounded-md  overflow-hidden"
     >

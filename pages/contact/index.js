@@ -56,13 +56,13 @@ const Contact = () => {
             <div className=" text-green-50  flex flex-col justify-center gap-6 ">
               <div>
                 <h1 className="text-3xl">Found us </h1>
-                <p>Discover your beauty destination with Divine Beauty </p>
+                <p>Discover your beauty destination with Brainery </p>
               </div>
               <div className="icons-section flex flex-col justify-between items-start gap-6">
                 <div className="single-icon-div flex items-center gap-3">
                   <MdLocationPin className="border-2 border-white rounded-full text-4xl p-1" />
                   <p>
-                    Mirpur-2, Dhaka <br /> Bangladesh
+                    Tangail, Dhaka <br /> Bangladesh
                   </p>
                 </div>
                 <div className="single-icon-div flex items-center gap-3">
